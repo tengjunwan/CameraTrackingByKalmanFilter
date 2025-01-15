@@ -25,7 +25,7 @@ if success is not True:
 # Retrieve FPS from the video
 fps = cap.get(cv2.CAP_PROP_FPS)
 time_interval = 1 / fps
-frame_tolerance = 10
+frame_tolerance = 10  # num of frames camera need to capture target
 
 # object tracker 
 detector = RedDotDetector()  
@@ -42,14 +42,14 @@ frame_count = 0
 while True:
     # cv.waitKey()
     # choose init camera frame
-    # frame_disp = frame.copy()
-    # cv2.putText(frame_disp, 'Select windows ROI and press ENTER', (20, 30), 
-    #            cv2.FONT_HERSHEY_COMPLEX_SMALL,
-    #             1.5, (0, 0, 0), 1)
+    frame_disp = frame.copy()
+    cv2.putText(frame_disp, 'Select windows ROI and press ENTER', (20, 30), 
+               cv2.FONT_HERSHEY_COMPLEX_SMALL,
+                1.5, (0, 0, 0), 1)
     
-    # # first frame correction(no prediction)
-    # x, y, w, h = cv2.selectROI(display_name, frame_disp, fromCenter=False)
-    x, y, w, h = 570, 226, 503, 355
+    # first frame correction(no prediction)
+    x, y, w, h = cv2.selectROI(display_name, frame_disp, fromCenter=False)
+    # x, y, w, h = 570, 226, 503, 355  # for debug
     v_init = np.array([0.0, 0.0], dtype=np.float32)
     cam_frame = CameraCaptureFrame(np.array([x, y, w, h]), 
                                    frame, 
